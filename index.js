@@ -13,11 +13,9 @@ const { authentication } = require("./middlewares/authentication");
 const PORT = 3001;
 
 const app = express();
- var corsOptions = {
-  origin: '*',
-  optionsSuccessStatus: 200
-}
-
+const corsOptions = {
+  origin: "*"
+};
 
 app.use(cors(corsOptions));
 app.use(express.json());
