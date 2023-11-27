@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const cors = require("cors");
-
+const { createProxyMiddleware } = require('http-proxy-middleware');
 const { connection } = require("./config/db");
 const { UserModel } = require("./models/User.model");
 const { DepartmentModel } = require("./models/Departments");
@@ -20,6 +20,17 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 
+
+
+module.exports = function(app) {
+  app.use(
+    '/api',
+    createProxyMiddleware({
+      target: 'https://busy-lime-marlin-cuff.cyclic.app',
+      changeOrigin: true,
+    })
+  );
+};
 app.get("/", (req, res) => {
   res.send({ message: "Base Api route" });
 });
