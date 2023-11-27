@@ -14,8 +14,7 @@ const PORT = 3001;
 
 const app = express();
 const corsOptions = {
-  origin: "https://busy-lime-marlin-cuff.cyclic.app", // Your frontend URL
-  credentials: true, // To allow cookies and authorization headers with CORS requests
+  origin: "*"
 };
 
 app.use(cors(corsOptions));
